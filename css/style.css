@@ -43,6 +43,7 @@ a.homeButton{
 }
 
 
+
 .parallax-container {
   min-height: 380px;
   line-height: 0;
@@ -52,6 +53,7 @@ a.homeButton{
   .parallax-container .section {
     width: 100%;
   }
+
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
@@ -75,6 +77,36 @@ a.homeButton{
 .icon-block .material-icons {
   font-size: inherit;
 }
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+#videoHolder {
+  background-color:rgba(0,0,0,.65);
+  height:100%;
+  left:0;
+  position:relative;
+  top:0;
+  transition:background-color 300ms ease;
+  width:100%;
+}
+#video {
+  backface-visibility:hidden;
+  background: no-repeat scroll 0 0 #000;
+  background-size:cover;
+  bottom:0;
+  height:auto;
+  min-height:100%;
+  min-width:100%;
+  perspective:1000;
+  position:fixed;
+  right:0;
+  width:auto;
+  z-index:-1;
+
+}
+
 
 footer.page-footer {
   margin: 0;
