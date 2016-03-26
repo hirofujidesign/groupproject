@@ -19,19 +19,28 @@ p {
 .button-collapse {
   color: #26a69a;
 }
+#buttonRow{
+  margin-top:100px;
+}
+#topContainer{
+  margin-top:150px;
+}
 a.homeButton{
-  background:teal;
-  padding: 70px 40px 40px 40px;
+  padding: 60px 40px 40px 40px;
   text-align: center;
   margin:50px;
+  border-radius: 10px;
+  border:solid;
+  border-color:white;
 }
 .buttonText{
   font-family:Roboto;
-  font-size:70px;
+  font-size:40px;
   text-transform:uppercase;
   display:inline-block;
-  color:white;
   position:static;
+  color:white;
+  width:300px;
 }
 .row{
   margin-top:25px;
@@ -50,7 +59,7 @@ a.homeButton{
   height: auto;
   color: rgba(255,255,255,.9);
 }
-  .parallax-container .section {
+.parallax-container .section {
     width: 100%;
   }
 
@@ -77,10 +86,10 @@ a.homeButton{
 .icon-block .material-icons {
   font-size: inherit;
 }
-.parallax-container {
+#index-banner {
   position: relative;
   overflow: hidden;
-  height: 500px;
+  height: 700px;
 }
 #videoHolder {
   background-color:rgba(0,0,0,.65);
@@ -104,7 +113,7 @@ a.homeButton{
   right:0;
   width:auto;
   z-index:-1;
-
+  transform:(0, + -(scrolled * 0.50) + "px,0)";
 }
 
 
