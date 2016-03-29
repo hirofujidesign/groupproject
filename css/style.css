@@ -36,6 +36,7 @@ a.homeButton{
 .buttonText{
   font-family:Roboto;
   font-size:40px;
+  margin:auto;
   text-transform:uppercase;
   display:inline-block;
   position:static;
