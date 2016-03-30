@@ -37,7 +37,11 @@ a.homeButton{
   background-color:#0266C8;
   opacity: 0.4;
 }
+.giveButttonGetPage{
+  display:block;
+  float:right;
 
+}
 .buttonText{
   font-family:Roboto;
   font-size:40px;
@@ -85,7 +89,6 @@ a.homeButton{
     top: 0;
   }
 }
-
 .icon-block {
   padding: 0 15px;
 }
