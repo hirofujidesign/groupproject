@@ -33,6 +33,11 @@ a.homeButton{
   border:solid;
   border-color:white;
 }
+.homeButton:hover{
+  background-color:#0266C8;
+  opacity: 0.4;
+}
+
 .buttonText{
   font-family:Roboto;
   font-size:40px;
