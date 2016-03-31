@@ -31,9 +31,9 @@
       <div class="container">
         <br><br>
         <div class="row center">
-         <h5 class="header col s12 light" style="color:black;">A website that allows for people to give and receive</h5>
-        </div>
-          <button class="giveButtonGetPage"> Give </button>
+         <h5>A website that allows for people to give and receive</h5>
+        </div class="buttonHolder">
+          <a href="#" class="waves-effect waves-light btn-large" id="giveButton">Give</a>
     </div>
 
 
@@ -44,15 +44,69 @@
       <div class="row">
    
         <div class="col s12 center">
+<!-- 
 
-        Test
+            <div class="container" ng-controller="mainCtrl">
+            <div class="row">
+                <div class="s12 col">
+                    <form class="forms forms-inline input-field ">
+                        <input type="text" class="input-big width-50" id="query" ng-model="query">
+                        <label for="query">Filter</label>
+                    </form>
+                    <ul class="collection">
+                        <li class="collection-item avatar animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms" ng-repeat="u in users | filter:query | orderBy:'user.username'">
+                            <a href="" ng-click="modalDetails(u.user)" class="modal-trigger title"><img ng-src="{{u.user.picture.thumbnail}}" alt="" class="circle"> {{u.user.username}}</a>
+                            <p>{{u.user.location.city}}, {{u.user.location.state}}</p>
+                            <a href="#!" class="secondary-content" ng-click="removeUser(u)"><i class="small mdi-action-highlight-remove"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="modalDetails" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="l2 col">
+                            <img ng-src="{{user.picture.medium}}" alt="" class="align-right circle">
+                        </div>
+                        <div class="l10 col">
+                            <h2>{{user.username}}</h2>
+                            <label>Email</label> {{user.email}} <br/>
+                            <label>Password</label> {{user.password}}
+                            <hr>
+                            <label>Phone</label> {{user.phone}} <br/>
+                            <label>Location</label> {{user.location.city}}, {{user.location.state}} <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+              </div>
+            </div>
+            </div>
+ -->
+
+      <div class="row">
+        <div class="col s2" id="categoriesBox">
+        test
+        </div>
+        <div class="col s10">
+          <div class="card medium" id="postHolder">
+            <div class="card-image">
+              <img src="images/sample-1.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-
-
-  <footer class="page-footer teal">
+  <footer class="page-footer" style="background-color:#0266C8">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -61,13 +115,11 @@
 
 
         </div>
-        <div class="col l3 s12">å
+        <div class="col l3 s12">
           <h5 class="white-text">Settings</h5>
           <ul>
             <li><a class="white-text" href="#!">Link 1</a></li>
             <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
           </ul>
         </div>
         <div class="col l3 s12">
@@ -75,8 +127,6 @@
           <ul>
             <li><a class="white-text" href="#!">Link 1</a></li>
             <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
           </ul>
         </div>
       </div>
