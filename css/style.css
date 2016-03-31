@@ -25,6 +25,24 @@ p {
 #topContainer{
   margin-top:150px;
 }
+#giveButton{
+  background-color:#0266C8;
+  position: fixed;
+  margin-left: 1200px;
+  top:180px;
+  text-align:right;
+}
+#categoriesBox{
+  box-shadow: 1px 2px 2px 1px gray;
+  height:500px;
+  width:200px;
+  background-color:white;
+  clear:both;
+  position:fixed;
+  left:40px;
+  top: 200px;
+  padding-top: 30px;
+}
 a.homeButton{
   padding: 60px 40px 40px 40px;
   text-align: center;
@@ -32,6 +50,10 @@ a.homeButton{
   border-radius: 10px;
   border:solid;
   border-color:white;
+}
+.buttonHolder{
+  text-align:right;
+  float:right;
 }
 .homeButton:hover{
   background-color:#0266C8;
