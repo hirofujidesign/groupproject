@@ -1,10 +1,10 @@
-(function($){
-  $(function(){
+(function($) {
+    $(function() {
 
-    $('.button-collapse').sideNav();
-    $('.parallax').parallax();
+        $('.button-collapse').sideNav();
+        $('.parallax').parallax();
 
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery); // end of jQuery name space
 
 // $(document).ready(function () {
@@ -15,25 +15,28 @@
 
 // var myApp = angular.module('myApp', []);
 // myApp.controller('mainCtrl', function ($scope, $http){
-  
+
 //   $http.get('http://api.randomuser.me/?results=24').success(function(data) {
 //     $scope.users = data.results;
 //   }).error(function(data, status) {
 //     alert('get data error!');
 //   });
-  
+
 //   $scope.removeUser = function(user){
 //      $scope.users.splice($scope.users.indexOf(user),1);
 //   };
-  
+
 //   $scope.modalDetails = function(user){
 //      $scope.user = user;
 //      $('#modalDetails').openModal();
 //   };
-  
+
 // });
 
-var ref = new Firebase("https://giveorget.firebaseio.com/");
+var ref = new Firebase("https://jlipschitzfire.firebaseio.com/");
+var displayUserName = "";
+var displayUserUrl = "";
+
 
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -119,24 +122,34 @@ function createCard() {
 
 function clearForm() {
     $("#email").val("")
-    $("#describeItem").val("")
+    $("#describeItem")[0].value;
     $("#pictureUrl").val("");
     // picUrl clear
-}
-
-function validateFormInput() {
-    //make sure all fields are valid before displaying modal
 }
 
 function grabFormInput() {
     //get user form input
     var getFormInput = {
+        userName: displayUserName,
+        userPicture: displayUserUrl,
         category: $("#selectCategory option:selected").text(),
         email: $("#email").val(),
-        itemDescr: $("#describeItem").val(),
-        picUrl: $("#pictureUrl").val()
+        itemDescr: $("#describeItem")[0].value,
+        picUrl: $("#pictureUrl").val(),
+
     }
-    ref.push(getFormInput)
+        console.log(getFormInput.username)
+        console.log(getFormInput.userPicture)
+        console.log(getFormInput.category)
+        console.log(getFormInput.email)
+        console.log(getFormInput.itemDescr)
+        console.log(getFormInput.picUrl)
+        ref.push(getFormInput)
+        thankYou.showModal();
+        clearForm();
+        console.log("push worked inside grabFormInput")
+        giveModal.hideModal();
+    
 };
 
 ref.on("child_added", function(childSnapshot, prevChildKey) {
@@ -188,6 +201,7 @@ $(document).ready(function() {
         giveModal.showModal();
     });
     $('#giveButtonClose').on('click', function() {
+        grabFormInput();
         thankYou.showModal();
         return false;
     });
@@ -207,17 +221,20 @@ $(document).on('click', "#login", function() {
     });
 })
 
-   function signinCallback(resp) {
-     gapi.client.load('plus', 'v1', function() {
-       gapi.client.plus.people.get({
-         userId: 'me'
-       }).execute(getProfileInfo);
-     });
-   }
+function signinCallback(resp) {
+    gapi.client.load('plus', 'v1', function() {
+        gapi.client.plus.people.get({
+            userId: 'me'
+        }).execute(getProfileInfo);
+    });
+}
 
-   function getProfileInfo(person) {
-     // var url = "http://profiles.google.com/s2/photos/profile/" + userid + "?sz=" + size";
-     console.log(person.displayName);
-     console.log(person.image.url);
+function getProfileInfo(person) {
+    // var url = "http://profiles.google.com/s2/photos/profile/" + userid + "?sz=" + size";
+    console.log(person.displayName);
+    console.log(person.image.url);
+    displayUserName = person.displayName;
+    console.log(displayUserName)
+    displayUserUrl = person.image.url;
 
-   }
+}
