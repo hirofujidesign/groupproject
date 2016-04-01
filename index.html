@@ -42,7 +42,7 @@
 
         </div>
         <div class="row center" id ="buttonRow">
-          <a href="index.html" class="homeButton">
+          <a class="homeButton" id="giveButton">
             <h2 class="buttonText">GIVE</h2>
           </a>
           <a href="getpage.html" class="homeButton">
@@ -184,8 +184,79 @@
     </div>
   </footer>
 
+  <!-- GIVE MODAL -->
+    <div id="giveModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 style="text-align:center;">Give Donation Form</h4>
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=50&h=50">Helping mankind one item at a time!
+            <br>
+            <br>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s8 right-alert" style="width:350px;">
+                        <select class="icons" id="selectCategory">
+                            <option value="" disabled selected>Select A Category</option>
+                            <option value="1" data-icon="http://www.rgbstock.com/cache1na3vG/users/c/cr/crisderaud/300/2dmdEXT.jpg" class="circle">Clothing</option>
+                            <option value="2" data-icon="http://www.hercampus.com/sites/default/files/2015/11/18/Can%20Drive.jpg" class="circle">Food</option>
+                            <option value="3" data-icon="http://www.thetoyinsider.com/wp/wp-content/uploads/2015/04/ThinkwayToys.TumblinStuart.jpg" class="circle">Toys/Electronics</option>
+                            <option value="4" data-icon="https://lh3.googleusercontent.com/fGuoxxlwGryj4SmLJ9znrP9QIvZnSv7xrPUgW0dYYSGqXC60unlMApxLoSs42ghMefo=w300" class="circle">Other</option>
+                        </select>
+                        <label>What would you like to donate?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 right-alert">
+                        <i class="material-icons prefix">language</i>
+                        <input id="pictureUrl" type="text" class="validate">
+                        <label for="icon_prefix">Picture URL</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4 right-alert">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s10 right-alert">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" id="describeItem" class="materialize-textarea" placeholder="Hard Rock Cafe Mens Shirt Used Size M"></textarea>
+                        <label for="icon_prefix2">Brief Item Description</label>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <button class="btn waves-effect waves-light right" id="giveButtonClose" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        </div>
+    </div>
+    <!-- THANK YOU MODAL -->
+    <div id="thanksModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 style="text-align:center;">THANK YOU</h4>
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150">
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            <a href="#">
+                <p>See what others are posting here</p>
+            </a>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        </div>
+    </div>
+    <!-- END MODALS -->
+
 
   <!--  Scripts-->
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
