@@ -206,3 +206,18 @@ $(document).on('click', "#login", function() {
         scope: "email,user_likes" // the permissions requested
     });
 })
+
+   function signinCallback(resp) {
+     gapi.client.load('plus', 'v1', function() {
+       gapi.client.plus.people.get({
+         userId: 'me'
+       }).execute(getProfileInfo);
+     });
+   }
+
+   function getProfileInfo(person) {
+     // var url = "http://profiles.google.com/s2/photos/profile/" + userid + "?sz=" + size";
+     console.log(person.displayName);
+     console.log(person.image.url);
+
+   }

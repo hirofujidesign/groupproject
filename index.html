@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://apis.google.com/js/client:plusone.js"></script>
 </head>
 <body>
 
@@ -20,13 +21,32 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="#">ABOUT</a></li>
         <li><a href="#">CONTACT</a></li>
-        <li><a href="#">Login</a></li>
+        <li><span id="signinButton">
+          <span
+            class="g-signin"
+            data-callback="signinCallback"
+            data-clientid="498722695199-nvmm9jnsmc1iid01tdhgbl992qhvq3k0.apps.googleusercontent.com"
+            data-cookiepolicy="single_host_origin"
+            data-requestvisibleactions="http://schemas.google.com/AddActivity"
+            data-scope="https://www.googleapis.com/auth/plus.login">
+          </span>
+        </span></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">ABOUT</a></li>
         <li><a href="#">CONTACT</a></li>
-        <li><a href="#">Login</a></li>
+        <li><span id="signinButton">
+          <span
+            class="g-signin"
+            data-callback="signinCallback"
+            data-clientid="498722695199-nvmm9jnsmc1iid01tdhgbl992qhvq3k0.apps.googleusercontent.com"
+            data-cookiepolicy="single_host_origin"
+            data-requestvisibleactions="http://schemas.google.com/AddActivity"
+            data-scope="https://www.googleapis.com/auth/plus.login">
+          </span>
+        </span>
+        </li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
