@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/dropify.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/dropify.css">
+</head>
+
+<body>
+    <!-- THANK YOU MODAL BUTTON -->
+    <button data-target="thanksModal" class="btn modal-trigger waves-effect waves-teal">Thank You ModaL</button>
+    <div id="thanksModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 style="text-align:center;">THANK YOU</h4>
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150">
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            <a href="#">
+                <p>See what others are posting here</p>
+            </a>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        </div>
+    </div>
+    <!-- THANK YOU MODAL BUTTON END -->
+    <!-- GIVE MODAL FORM BUTTON -->
+    <button data-target="mgiveModal" class="btn modal-trigger waves-effect waves-teal">Give Submit Modal Form</button>
+    <!-- GIVE MODAL FORM -->
+    <div id="mgiveModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 style="text-align:center;">Give Donation Form</h4>
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=50&h=50">Helping mankind one item at a time!
+            <br>
+            <br>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s8 right-alert" style="width:350px;">
+                        <select class="icons">
+                            <option value="" disabled selected>Select A Category</option>
+                            <option value="" data-icon="http://www.rgbstock.com/cache1na3vG/users/c/cr/crisderaud/300/2dmdEXT.jpg" class="circle">Clothing</option>
+                            <option value="" data-icon="http://www.hercampus.com/sites/default/files/2015/11/18/Can%20Drive.jpg" class="circle">Food</option>
+                            <option value="" data-icon="http://www.thetoyinsider.com/wp/wp-content/uploads/2015/04/ThinkwayToys.TumblinStuart.jpg" class="circle">Toys/Electronics</option>
+                            <option value="" data-icon="https://lh3.googleusercontent.com/fGuoxxlwGryj4SmLJ9znrP9QIvZnSv7xrPUgW0dYYSGqXC60unlMApxLoSs42ghMefo=w300" class="circle">Other</option>
+                        </select>
+                        <label>What would you like to donate?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn disabled">
+                            <span>Upload Item Picture</span>
+                        </div>
+                        <input type="file" class="dropify">
+                    </div>
+                    <div class="input-field col s4 right-alert">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s10 right-alert">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Hard Rock Cafe Mens Shirt Used Size M"></textarea>
+                        <label for="icon_prefix2">Brief Item Description</label>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        </div>
+    </div>
+    <script>
+    var thankYou = {
+        showModal: function() {
+            $('#thanksModal').openModal();
+        },
+        hideModal: function() {
+            $('#thanksModal').closeModal();
+        }
+    };
+    var giveModal = {
+        showModal: function() {
+            $('#mgiveModal').openModal();
+        },
+        hideModal: function() {
+            $('#mgiveModal').closeModal();
+        }
+    };
+    $(document).ready(function() {
+        $('#textarea1').val('New Text');
+        $('#textarea1').trigger('autoresize');
+        $('select').material_select();
+        //upload image js handler
+        $('.dropify').dropify({
+            messages: {
+                'default': '',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong appended.'
+            }
+        });
+        //modal popup js handler
+        $('.modal-trigger').leanModal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+        });
+    })
+    </script>
+</body>
+
+</html>

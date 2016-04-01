@@ -33,7 +33,8 @@ p {
   text-align:right;
 }
 #categoriesBox{
-  box-shadow: 3px 3px 3px 2px gray;
+
+  box-shadow: 1px 2px 2px 1px gray;
   height:500px;
   width:200px;
   background-color:white;
