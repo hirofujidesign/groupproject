@@ -58,7 +58,7 @@ a.homeButton{
 }
 .homeButton:hover{
   background-color:#0266C8;
-  opacity: 0.4;
+  opacity: 0.9;
 }
 .giveButttonGetPage{
   display:block;
