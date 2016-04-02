@@ -7,90 +7,10 @@
     }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-// $(document).ready(function () {
-//     $(window).on('load scroll', function () {
-//         var scrolled = $("#video").scrollTop();
-//         $('#video').css('transform', 'translate3d(0, ' + -(scrolled * 0.25) + 'px, 0)'); // parallax (25% scroll rate)
-//     });
-
-// var myApp = angular.module('myApp', []);
-// myApp.controller('mainCtrl', function ($scope, $http){
-
-//   $http.get('http://api.randomuser.me/?results=24').success(function(data) {
-//     $scope.users = data.results;
-//   }).error(function(data, status) {
-//     alert('get data error!');
-//   });
-
-//   $scope.removeUser = function(user){
-//      $scope.users.splice($scope.users.indexOf(user),1);
-//   };
-
-//   $scope.modalDetails = function(user){
-//      $scope.user = user;
-//      $('#modalDetails').openModal();
-//   };
-
-// });
-
 var ref = new Firebase("https://jlipschitzfire.firebaseio.com/");
 var displayUserName = "";
 var displayUserUrl = "";
 
-
-function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    if (response.status === 'connected') {
-        testAPI();
-    } else if (response.status === 'not_authorized') {
-        document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
-    } else {
-        document.getElementById('status').innerHTML = 'Please log ' +
-            'into Facebook.';
-    }
-}
-
-function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-}
-
-window.fbAsyncInit = function() {
-    FB.init({
-        appId: '{1755674047996992}',
-        cookie: true, // enable cookies to allow the server to access 
-        // the session
-        xfbml: true, // parse social plugins on this page
-        version: 'v2.5' // use graph api version 2.5
-    });
-
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-
-};
-
-// Load the SDK asynchronously
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "http://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-        console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
-    });
-}
 
 function createCard() {
     //on firebase something like ref.on('next')
@@ -136,25 +56,38 @@ function grabFormInput() {
         email: $("#email").val(),
         itemDescr: $("#describeItem")[0].value,
         picUrl: $("#pictureUrl").val(),
-
     }
-        console.log(getFormInput.username)
-        console.log(getFormInput.userPicture)
-        console.log(getFormInput.category)
-        console.log(getFormInput.email)
-        console.log(getFormInput.itemDescr)
-        console.log(getFormInput.picUrl)
-        ref.push(getFormInput)
-        thankYou.showModal();
-        clearForm();
-        console.log("push worked inside grabFormInput")
-        giveModal.hideModal();
-    
+    console.log(getFormInput.username)
+    console.log(getFormInput.userPicture)
+    console.log(getFormInput.category)
+    console.log(getFormInput.email)
+    console.log(getFormInput.itemDescr)
+    console.log(getFormInput.picUrl)
+
+
+    //push into our firebase 
+    ref.push(getFormInput)
+    console.log("push worked inside grabFormInput")
+        //open thank you modal
+    thankYou.showModal();
+    //clear form input
+    clearForm();
+    giveModal.hideModal();
+
 };
 
-ref.on("child_added", function(childSnapshot, prevChildKey) {
-    //run DisplayPosts
+ref.on("child_added", function(snapshot, prevChildKey) {
+    //add cards to get page
+    var cardPost = snapshot.val();
+    console.log("Name: " + cardPost.userName);
+    console.log("category: " + cardPost.category);
+    console.log("Item Picture: " + cardPost.picUrl);
+    console.log("Givers Email Address: " + cardPost.email);
+    console.log("Item Description: " + cardPost.itemDescr);
+    console.log("Users Picture: " + cardPost.userPicture);
+    console.log("Post key: " + prevChildKey);
 
+    $("#postHolder").append('<div class="content col s10" >' + '<div class="card"><div class="card-image"><img src="' + cardPost.picUrl + '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + cardPost.itemDescr + '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + cardPost.itemDescr + '</p>' + '<button>">Bid on this</button>' + '</div></div></div>')
 });
 
 var thankYou = {
@@ -208,19 +141,6 @@ $(document).ready(function() {
 });
 
 
-$(document).on('click', "#login", function() {
-    ref.authWithOAuthPopup("facebook", function(error, authData) {
-        if (error) {
-            console.log("Login Failed!", error);
-        } else {
-            // the access token will allow us to make Open Graph API calls
-            console.log(authData.facebook.accessToken);
-        }
-    }, {
-        scope: "email,user_likes" // the permissions requested
-    });
-})
-
 function signinCallback(resp) {
     gapi.client.load('plus', 'v1', function() {
         gapi.client.plus.people.get({
@@ -234,7 +154,6 @@ function getProfileInfo(person) {
     console.log(person.displayName);
     console.log(person.image.url);
     displayUserName = person.displayName;
-    console.log(displayUserName)
     displayUserUrl = person.image.url;
 
 }
