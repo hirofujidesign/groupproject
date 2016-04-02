@@ -7,13 +7,15 @@
     }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-var ref = new Firebase("https://jlipschitzfire.firebaseio.com/");
+var userPosts = new Firebase("https://jlipschitzfire.firebaseio.com/userPosts");
+var userProfile = new Firebase("https://jlipschitzfire.firebaseio.com/userProfile");
 var displayUserName = "";
 var displayUserUrl = "";
+var sessionStorageUrl = "";
 
 
 function createCard() {
-    //on firebase something like ref.on('next')
+    //on firebase something like userPosts.on('next')
     var db = {
         "card": [{
             "user": "username",
@@ -35,17 +37,79 @@ function createCard() {
 
     $.each(db.card, function(key, data) {
         console.log(data);
-        $('.insertCards').append('<div class="content col s10" >' + '<div class="card"><div class="card-image"><img src="' + data['image-url'] + '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + data.card_title + '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + data.card_subtitle + '</p>' + '<button>">View More</button>' + '</div></div></div>');
+        $('.insertCards').append('<div class="content col s10" >' + '<div class="card"><div class="card-image"><img src="' + data['image-url'] + '"></div>' 
+        	+ '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + data.card_title + '</span>' 
+        	+ '<p class="card-subtitle grey-text text-darken-2">' + data.card_subtitle + '</p>' + '<button>View More</button>' + '</div></div></div>');
     });
 
 }
 
-function clearForm() {
-    $("#email").val("")
-    $("#describeItem")[0].value;
-    $("#pictureUrl").val("");
-    // picUrl clear
-}
+
+var filter = {
+    clearPostDiv: function() {
+        $("#postHolder").empty();
+    },
+
+    sortByClothes: function() {
+        filter.clearPostDiv();
+
+        userPosts.orderByChild("category").equalTo("Clothing").on("child_added", function(snapshot) {
+            var thisCat = snapshot.val();
+            $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + thisCat.picUrl 
+            	+ '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + thisCat.itemDescr 
+            	+ '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + thisCat.itemDescr + '</p>' 
+            	+ '<button class ="btn waves-effect waves-light bidButton">Bid on this</button> <img id="userThankImgCard" src="' + thisCat.userPicture + '" >' 
+            	+ '</div></div></div>')
+        });
+
+    },
+
+    sortByElectronics: function() {
+        filter.clearPostDiv();
+
+        userPosts.orderByChild("category").equalTo("Toys/Electronics").on("child_added", function(snapshot) {
+            var thisCat = snapshot.val();
+            $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + thisCat.picUrl 
+            	+ '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + thisCat.itemDescr 
+            	+ '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + thisCat.itemDescr + '</p>' 
+            	+ '<button class ="btn waves-effect waves-light bidButton">Bid on this</button> <img id="userThankImgCard" src="' + thisCat.userPicture + '" >' 
+            	+ '</div></div></div>')
+        });
+    },
+
+    sortByOther: function() {
+        filter.clearPostDiv();
+
+        userPosts.orderByChild("category").equalTo("Other").on("child_added", function(snapshot) {
+            var thisCat = snapshot.val();
+            $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + thisCat.picUrl 
+            	+ '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + thisCat.itemDescr 
+            	+ '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + thisCat.itemDescr + '</p>' 
+            	+ '<button class ="btn waves-effect waves-light bidButton">Bid on this</button> <img id="userThankImgCard" src="' + thisCat.userPicture + '" >' 
+            	+ '</div></div></div>')
+        });
+    },
+
+    sortByFood: function() {
+        filter.clearPostDiv();
+
+        userPosts.orderByChild("category").equalTo("Food").on("child_added", function(snapshot) {
+            var thisCat = snapshot.val();
+            $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + thisCat.picUrl 
+            	+ '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + thisCat.itemDescr 
+            	+ '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + thisCat.itemDescr + '</p>' 
+            	+ '<button class ="btn waves-effect waves-light bidButton">Bid on this</button> <img id="userThankImgCard" src="' + thisCat.userPicture + '" >' 
+            	+ '</div></div></div>')
+        });
+    },
+
+    clearModalForm: function() {
+        $("#email").val("")
+        $("#describeItem")[0].value;
+        $("#pictureUrl").val("");
+        // picUrl clear
+    },
+};
 
 function grabFormInput() {
     //get user form input
@@ -66,17 +130,19 @@ function grabFormInput() {
 
 
     //push into our firebase 
-    ref.push(getFormInput)
+    userPosts.push(getFormInput)
     console.log("push worked inside grabFormInput")
         //open thank you modal
+    sessionStorage.setItem("userItem", getFormInput.picUrl);
+    $("#userThankImg").attr("src", sessionStorage.getItem("userItem"))
     thankYou.showModal();
     //clear form input
-    clearForm();
+    clearModalForm();
     giveModal.hideModal();
 
 };
 
-ref.on("child_added", function(snapshot, prevChildKey) {
+userPosts.on("child_added", function(snapshot, prevChildKey) {
     //add cards to get page
     var cardPost = snapshot.val();
     console.log("Name: " + cardPost.userName);
@@ -87,7 +153,10 @@ ref.on("child_added", function(snapshot, prevChildKey) {
     console.log("Users Picture: " + cardPost.userPicture);
     console.log("Post key: " + prevChildKey);
 
-    $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + cardPost.picUrl + '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + cardPost.itemDescr + '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + cardPost.itemDescr + '</p>' + '<button>">Bid on this</button>' + '</div></div></div>')
+    $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + cardPost.picUrl + '"></div>' 
+    	+ '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + cardPost.itemDescr + '</span>' 
+    	+ '<p class="card-subtitle grey-text text-darken-2">' + cardPost.itemDescr + '</p>' 
+    	+ '<button class="btn waves-effect waves-light bidButton">Bid on this</button> <img id="userThankImgCard" src="" >' + '</div></div></div>')
 });
 
 var thankYou = {
@@ -149,11 +218,34 @@ function signinCallback(resp) {
     });
 }
 
+//grab user info once logged in
 function getProfileInfo(person) {
     // var url = "http://profiles.google.com/s2/photos/profile/" + userid + "?sz=" + size";
     console.log(person.displayName);
     console.log(person.image.url);
+    //set local storage to be displayed on modals
+    sessionStorage.setItem("googlePicture", person.image.url);
+    $("#giveUserPic").attr("src", sessionStorage.getItem("googlePicture"));
+    //set local variable to usernames to be stored in userPosts on firebase
     displayUserName = person.displayName;
     displayUserUrl = person.image.url;
 
+
 }
+
+//sort filters
+$(document).ready(function() {
+
+    $("#sortByClothes").on('click', function() {
+        filter.sortByClothes();
+    });
+    $("#sortByElectronics").on('click', function() {
+        filter.sortByElectronics();
+    });
+    $("#sortByOther").on('click', function() {
+        filter.sortByOther();
+    });
+    $("#sortByFood").on('click', function() {
+        filter.sortByFood();
+    });
+});
