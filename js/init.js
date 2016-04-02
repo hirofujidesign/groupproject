@@ -147,11 +147,9 @@ function grabFormInput() {
         //open thank you modal
     sessionStorage.setItem("userItem", getFormInput.picUrl);
     $("#userThankImg").attr("src", sessionStorage.getItem("userItem"))
-    thankYou.showModal();
     //clear form input
-    clearModalForm();
+    filter.clearModalForm();
     giveModal.hideModal();
-
 };
 
 userPosts.on("child_added", function(snapshot, prevChildKey) {
@@ -217,6 +215,7 @@ $(document).ready(function() {
     $('#giveButtonClose').on('click', function() {
         grabFormInput();
         thankYou.showModal();
+        return false;
     });
 });
 

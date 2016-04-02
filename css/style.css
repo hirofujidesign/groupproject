@@ -47,7 +47,7 @@ p {
   padding:5px;
   margin-right:5px;
   border-radius:10px;
-  font-color:white;
+  background-color:white;
 }
 a.homeButton{
   padding: 60px 40px 40px 40px;
