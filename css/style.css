@@ -36,7 +36,7 @@ p {
 
   box-shadow: 1px 2px 2px 1px gray;
   height:500px;
-  width:200px;
+  width:10%;
   background-color:white;
   clear:both;
   position:fixed;
@@ -73,7 +73,7 @@ a.homeButton{
   display:inline-block;
   position:static;
   color:white;
-  width:300px;
+  width:20%;
 }
 .row{
   margin-top:25px;
@@ -105,6 +105,13 @@ a.homeButton{
   #index-banner .section {
     top: 10%;
   }
+  #categoriesBox{
+  box-shadow: 1px 2px 2px 1px gray;
+  background-color:white;
+  left:40px;
+  top: 200px;
+  padding-top: 30px;
+}
 }
 
 @media only screen and (max-width : 600px) {
