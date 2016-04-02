@@ -15,16 +15,34 @@
 <body>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+          <a id="logo-container" href="index.html" class="brand-logo"> <img id="logo-container" href="index.html" src="logo.png" style="width:60px;"></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#">CONTACT</a></li>
-                <li><a href="#">Login</a></li>
+                <li><span id="signinButton">
+                  <span
+                    class="g-signin"
+                    data-callback="signinCallback"
+                    data-clientid="498722695199-nvmm9jnsmc1iid01tdhgbl992qhvq3k0.apps.googleusercontent.com"
+                    data-cookiepolicy="single_host_origin"
+                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                    data-scope="https://www.googleapis.com/auth/plus.login">
+                  </span>
+                </span></li>
             </ul>
             <ul id="nav-mobile" class="side-nav">
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">CONTACT</a></li>
-                <li><a href="#">Login</a></li>
+                <li><span id="signinButton">
+                  <span
+                    class="g-signin"
+                    data-callback="signinCallback"
+                    data-clientid="498722695199-nvmm9jnsmc1iid01tdhgbl992qhvq3k0.apps.googleusercontent.com"
+                    data-cookiepolicy="single_host_origin"
+                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                    data-scope="https://www.googleapis.com/auth/plus.login">
+                  </span>
+                </span></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
@@ -34,12 +52,10 @@
         <br>
         <div class="row center">
             <h5>Choose to Get</h5>
+        </div>
+        <div class="row">
         </div class="buttonHolder">
         <a class="waves-effect waves-light btn-large giveButton2" id="giveButton">Give</a>
-        <div class="row">
-        <div class="col s2" id="categoriesBox">
-            test
-        </div>
         </div>
     </div>
 <!--     <div class="container">
