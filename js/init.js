@@ -87,7 +87,7 @@ ref.on("child_added", function(snapshot, prevChildKey) {
     console.log("Users Picture: " + cardPost.userPicture);
     console.log("Post key: " + prevChildKey);
 
-    $("#postHolder").append('<div class="content col s10" >' + '<div class="card"><div class="card-image"><img src="' + cardPost.picUrl + '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + cardPost.itemDescr + '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + cardPost.itemDescr + '</p>' + '<button>">Bid on this</button>' + '</div></div></div>')
+    $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + cardPost.picUrl + '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + cardPost.itemDescr + '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + cardPost.itemDescr + '</p>' + '<button>">Bid on this</button>' + '</div></div></div>')
 });
 
 var thankYou = {
