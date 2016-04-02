@@ -102,6 +102,18 @@ var filter = {
             	+ '</div></div></div>')
         });
     },
+    sortByAll: function() {
+       filter.clearPostDiv();
+
+       userPosts.orderByChild("category").on("child_added", function(snapshot) {
+           var thisCat = snapshot.val();
+           $("#postHolder").append('<div class="content col s4" >' + '<div class="card"><div class="card-image"><img src="' + thisCat.picUrl 
+               + '"></div>' + '<div class="card-content" id="userProfile">' + '<span class="card-title grey-text text-darken-4">' + thisCat.itemDescr 
+               + '</span>' + '<p class="card-subtitle grey-text text-darken-2">' + thisCat.itemDescr + '</p>' 
+               + '<button class ="btn waves-effect waves-light bidButton">Bid on this</button> <img id="userThankImgCard" src="' + thisCat.userPicture + '" >' 
+               + '</div></div></div>')
+       });
+   },
 
     clearModalForm: function() {
         $("#email").val("")
@@ -205,7 +217,6 @@ $(document).ready(function() {
     $('#giveButtonClose').on('click', function() {
         grabFormInput();
         thankYou.showModal();
-        return false;
     });
 });
 
@@ -216,7 +227,7 @@ function signinCallback(resp) {
             userId: 'me'
         }).execute(getProfileInfo);
     });
-}
+} 
 
 //grab user info once logged in
 function getProfileInfo(person) {
@@ -248,4 +259,9 @@ $(document).ready(function() {
     $("#sortByFood").on('click', function() {
         filter.sortByFood();
     });
+    $("#sortByAll").on('click', function() {
+        filter.sortByAll();
+    });
 });
+
+
